@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Food Rater</string>
+    <string name="name_default">Name</string>
+    <string name="description_default">description</string>
+    <string name="description_template">I\'m #%d</string>
+    <string name="food_banana">Banana</string>
+    <string name="food_broccoli">Broccoli</string>
+    <string name="food_bread">Homemade Bread</string>
+    <string name="food_chicken">Chicken</string>
+    <string name="food_chocolate">Chocolate</string>;
+    <string name="food_icecream">Ice Cream</string>
+    <string name="food_limabeans">Lima Beans</string>
+    <string name="food_steak">Steak</string>
+</resources>
