@@ -82,7 +82,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
                 public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                    mFoods.get(getAdapterPosition()).setRating(rating);
+                    if (fromUser) {mFoods.get(getAdapterPosition()).setRating(rating);}
                 }
             });
         }
