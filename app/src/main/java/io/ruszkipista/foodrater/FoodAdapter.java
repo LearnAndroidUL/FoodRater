@@ -10,18 +10,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder>{
     private List<Food> mFoods = new ArrayList<>();
-    private Random mRandom = new Random();
     private Context mContext;
     private RecyclerView mRecyclerView;
 
     public FoodAdapter(Context context) {mContext = context;}
 
     public void addFood(){
-        mFood.add(0,getRandomFood());
+        mFoods.add(0,new Food(mContext));
 //      notifyDataSetChanged();  // works OK, but we want animation
         notifyItemInserted(0);
         notifyItemRangeChanged(0, mFoods.size());
@@ -32,13 +30,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         mFoods.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(0, mFoods.size());
-    }
-
-    private String getRandomName() {
-        // get class name list from string resource
-        String[] names = mContext.getResources().getStringArray(R.array.name_list);
-
-        return names[mRandom.nextInt(names.length)];
     }
 
     @Override
@@ -55,9 +46,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NameViewHolder nameViewHolder, int i) {
-        nameViewHolder.mNameTextView.setText(mFoods.get(i));
-        nameViewHolder.mDescriptionTextView.setText(nameViewHolder.itemView.getContext().getResources().getString(R.string.description_template, (i+1)));
+    public void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i) {
+        foodViewHolder.mNameTextView.setText(mFoods.get(i).getName());
+        foodViewHolder.mDescriptionTextView.setText(foodViewHolder.itemView.getContext().getResources().getString(R.string.description_template, (i+1)));
     }
 
     @Override
@@ -65,11 +56,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         return mFoods.size();
     }
 
-    class NameViewHolder extends RecyclerView.ViewHolder {
+    class FoodViewHolder extends RecyclerView.ViewHolder {
         private TextView mNameTextView;
         private TextView mDescriptionTextView;
 
-        public NameViewHolder(View itemView){
+        public FoodViewHolder(View itemView){
             super(itemView);
             mNameTextView = itemView.findViewById(R.id.name);
             mDescriptionTextView = itemView.findViewById(R.id.description);

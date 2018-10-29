@@ -25,12 +25,13 @@ public class Food {
   }
 
   public Food(Context context) {
-    mName = context.getResources().getString(getRandomFoodResourceId());
-    mImageResourceId = sFoodImageMap.get(mName);
+    int nameResourceId = getRandomFoodNameResourceId();
+    mName = context.getResources().getString(nameResourceId);
+    mImageResourceId = sFoodImageMap.get(nameResourceId);
     mRating = 1.0f;
   }
 
-  private Integer getRandomFoodResourceId() {
+  private Integer getRandomFoodNameResourceId() {
     Object[] foods = Food.sFoodImageMap.keySet().toArray();
     return (Integer)foods[mRandom.nextInt(foods.length)];
   }

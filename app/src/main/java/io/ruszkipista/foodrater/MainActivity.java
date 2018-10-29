@@ -24,19 +24,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // connect RecyclerView with our io.ruszkipista.foodrater.NameAdapter
-        final NameAdapter nameAdapter = new NameAdapter(this);
+        final FoodAdapter nameAdapter = new FoodAdapter(this);
         recyclerView.setAdapter(nameAdapter);
 
-        nameAdapter.addName();
-        nameAdapter.addName();
-        nameAdapter.addName();
+        nameAdapter.addFood();
+        nameAdapter.addFood();
+        nameAdapter.addFood();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //add a name row
-                nameAdapter.addName();
+                nameAdapter.addFood();
             }
         });
     }
