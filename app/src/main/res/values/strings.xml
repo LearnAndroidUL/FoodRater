@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Food Rater</string>
     <string name="name_default">Name</string>
-    <string name="description_default">description</string>
-    <string name="description_template">I\'m #%d</string>
+    <string name="snackbar_added">added %s</string>
     <string name="food_banana">Banana</string>
     <string name="food_broccoli">Broccoli</string>
     <string name="food_bread">Homemade Bread</string>

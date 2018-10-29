@@ -32,6 +32,9 @@
             android:layout_toRightOf="@id/food_picture"
             android:layout_below="@id/food_name"
             android:layout_marginLeft="12dp"
+            android:scaleX="0.75"
+            android:scaleY="0.75"
+            android:transformPivotX="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

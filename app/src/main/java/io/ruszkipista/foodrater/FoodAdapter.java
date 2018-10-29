@@ -20,12 +20,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public FoodAdapter(Context context) {mContext = context;}
 
-    public void addFood(){
-        mFoods.add(0,new Food(mContext));
+    public Food addFood(){
+        Food food = new Food(mContext);
+        mFoods.add(0, food);
 //      notifyDataSetChanged();  // works OK, but we want animation
         notifyItemInserted(0);
         notifyItemRangeChanged(0, mFoods.size());
         mRecyclerView.scrollToPosition(0);
+        return food;
     }
 
     public void removeFood(int position){
@@ -75,6 +77,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 public boolean onLongClick(View v) {
                     removeFood(getAdapterPosition());
                     return true;
+                }
+            });
+            mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    mFoods.get(getAdapterPosition()).setRating(rating);
                 }
             });
         }

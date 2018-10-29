@@ -2,6 +2,7 @@ package io.ruszkipista.foodrater;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //add a name row
-                nameAdapter.addFood();
+                Food food = nameAdapter.addFood();
+                Snackbar.make(view, getString(R.string.snackbar_added, food.getName()),
+                        Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
     }
