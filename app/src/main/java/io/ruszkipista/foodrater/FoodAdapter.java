@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         mRecyclerView.scrollToPosition(0);
     }
 
-    public void removeName(int position){
+    public void removeFood(int position){
         mFoods.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(0, mFoods.size());
@@ -47,8 +49,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i) {
-        foodViewHolder.mNameTextView.setText(mFoods.get(i).getName());
-        foodViewHolder.mDescriptionTextView.setText(foodViewHolder.itemView.getContext().getResources().getString(R.string.description_template, (i+1)));
+        Food food = mFoods.get(i);
+        foodViewHolder.mPictureImageView.setImageResource(food.getImageResourceId());
+        foodViewHolder.mNameTextView.setText(food.getName());
+        foodViewHolder.mRatingBar.setRating(food.getRating());
     }
 
     @Override
@@ -57,17 +61,19 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     class FoodViewHolder extends RecyclerView.ViewHolder {
+        private ImageView mPictureImageView;
         private TextView mNameTextView;
-        private TextView mDescriptionTextView;
+        private RatingBar mRatingBar;
 
         public FoodViewHolder(View itemView){
             super(itemView);
-            mNameTextView = itemView.findViewById(R.id.name);
-            mDescriptionTextView = itemView.findViewById(R.id.description);
+            mPictureImageView = itemView.findViewById(R.id.food_picture);
+            mNameTextView = itemView.findViewById(R.id.food_name);
+            mRatingBar = itemView.findViewById(R.id.food_ratingbar);
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    removeName(getAdapterPosition());
+                    removeFood(getAdapterPosition());
                     return true;
                 }
             });
